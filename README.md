@@ -34,7 +34,49 @@ https://colab.research.google.com/github/YOUR_USERNAME/TimeSeriesForecastingTest
 4. `TimeSeriesForecastingTest` 저장소 선택
 5. 원하는 노트북(`lab_notebook.ipynb` 또는 `assignment_notebook.ipynb`) 선택
 
-#### 3️⃣ 코드 수정 및 저장
+#### 3️⃣ utils.py 파일 불러오기 (중요!)
+
+노트북에서 `utils.py`의 함수들을 사용하기 위해 **다음 중 한 가지 방법을 선택**하세요:
+
+**방법 A: GitHub에서 직접 다운로드 (가장 쉬움!) ⭐**
+
+노트북 첫 번째 셀에 아래 코드를 추가하세요:
+
+```python
+# utils.py 다운로드
+!wget https://raw.githubusercontent.com/YOUR_USERNAME/TimeSeriesForecastingTest/main/utils.py
+
+# utils 모듈 import
+import utils
+# 또는
+from utils import *
+```
+
+**방법 B: GitHub 저장소 전체 Clone**
+
+```python
+# 저장소 전체 복제
+!git clone https://github.com/YOUR_USERNAME/TimeSeriesForecastingTest.git
+%cd TimeSeriesForecastingTest
+
+# utils 모듈 import
+from utils import *
+```
+
+**방법 C: 파일 수동 업로드**
+
+```python
+# Colab의 파일 업로드 기능 사용
+from google.colab import files
+uploaded = files.upload()  # utils.py 파일 선택
+
+# utils 모듈 import
+from utils import *
+```
+
+> 💡 **추천**: 방법 A가 가장 간단합니다! 노트북을 열 때마다 자동으로 최신 버전을 다운로드합니다.
+
+#### 4️⃣ 코드 수정 및 저장
 - Colab에서 코드를 수정한 후
 - **파일** → **GitHub에 사본 저장**을 선택하여 본인 저장소에 저장하세요
 - 또는 **파일** → **드라이브에 사본 저장**으로 Google Drive에 저장 가능
@@ -109,28 +151,26 @@ pip install -r requirements.txt
 
 ### 2. Google Colab에서 실행
 
-**가장 간단한 방법**: 위의 Colab 뱃지를 클릭하세요!
-
-또는 수동으로 실행:
+Colab 노트북 첫 번째 셀에서 다음을 실행하세요:
 
 ```python
-# Colab에서 필요한 패키지 설치
-!pip install yfinance scikit-learn torch
+# 1. 필요한 패키지 설치
+!pip install yfinance scikit-learn torch seaborn -q
 
-# GPU 확인
+# 2. utils.py 다운로드 (본인의 GitHub 아이디로 변경!)
+!wget https://raw.githubusercontent.com/YOUR_USERNAME/TimeSeriesForecastingTest/main/utils.py
+
+# 3. utils 모듈 import
+from utils import *
+
+# 4. GPU 확인
 import torch
 print(f"Using device: {torch.device('cuda' if torch.cuda.is_available() else 'cpu')}")
 if torch.cuda.is_available():
     print(f"GPU: {torch.cuda.get_device_name(0)}")
-
-# GitHub에서 파일 다운로드 (저장소가 있는 경우)
-!git clone https://github.com/juho127/TimeSeriesForecastingTest.git
-%cd TimeSeriesForecastingTest
-
-# 또는 utils.py 파일 수동 업로드
-from google.colab import files
-uploaded = files.upload()
 ```
+
+> ⚠️ **중요**: `YOUR_USERNAME`을 본인의 GitHub 아이디로 변경하세요!
 
 ### 3. GPU 사용 설정
 
